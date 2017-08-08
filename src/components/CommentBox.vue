@@ -5,7 +5,7 @@
       <button type='submit' v-on:click='addComment'>发布</button>
     </div>
     <ul>
-      <li v-for="comment in comments">
+      <li v-for="comment in reversedComments">
         {{comment.text}}
       </li>
     </ul>
@@ -26,9 +26,16 @@
         }
       ]
     }),
+    computed: {
+      reversedComments: function () {
+        return this.comments.slice().reverse()
+      }
+    },
     methods: {
       addComment: function () {
-        console.log('button click ...')
+        const text = document.getElementById('commentForm').value
+        this.comments.push({text})
+        document.getElementById('commentForm').value = ''
       }
     }
   }
