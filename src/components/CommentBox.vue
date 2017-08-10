@@ -16,8 +16,6 @@
 <script>
   import * as types from '../store/mutation-types'
 
-  import comment from '../api/comment'
-
   export default {
     name: 'comment-box',
     computed: {
@@ -36,9 +34,7 @@
       }
     },
     created () {
-      comment.getComments(posts => {
-        console.log('created', posts)
-      })
+      this.$store.dispatch('getAllPosts')
     }
   }
 </script>
